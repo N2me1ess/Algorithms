@@ -43,7 +43,7 @@ class Graph:
         if self.checkValidNode(n1) and self.checkValidNode(n2):
             del self.edges[n1][n2]
 
-            print(f"successfully removed edge {n1} {n2}")
+            print(f"successfully removed edge {n1}= {n2}")
         else:
             print(f"unsuccessfully removed edge {n1}, {n2}")
 

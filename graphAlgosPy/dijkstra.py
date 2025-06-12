@@ -1,20 +1,22 @@
-from graph import Graph
+from graphAlgosPy.graph import Graph
 import heapq as hq
 
-class Path:
+
+class Route:
     def __init__(self, w, s):
         self.w = w
-        self.s = s
+        self.path = s
 
     def getW(self):
         return self.w
 
-    def getS(self):
-        return self.s
+    def getPath(self):
+        return self.path
 
-def dijkstra (G, s):
-    D = {n : Path(float('inf'), f"{s}") for n in G.getNodes()}
-    D[s] = Path(0, f"{s}")
+
+def dijkstra(G, s):
+    D = {n: Route(float('inf'), f"{s}") for n in G.getNodes()}
+    D[s] = Route(0, f"{s}")
 
     pq = []
     hq.heappush(pq, (0, s))
@@ -27,16 +29,17 @@ def dijkstra (G, s):
 
             # Recurrence Formulation D[v] = min(D[u] + edgeweight(u, v), D[v])
             if D[u].getW() + w < D[v].getW():
-                newPath = Path(D[u].getW() + w, D[u].getS() + f" --> {v}")
+                newPath = Route(D[u].getW() + w, D[u].getPath() + f" --> {v}")
                 D[v] = newPath
 
                 hq.heappush(pq, (D[v].getW(), v))
 
     return D
 
+
 def printShortestPaths(D, s):
     for n, path in D.items():
-        print(f"Shortest Path from {s} to {n}: {path.getS()}. Weight: {path.getW()}")
+        print(f"Shortest Path from {s} to {n}: {path.getPath()}. Weight: {path.getW()}")
 
 
 if __name__ == "__main__":
